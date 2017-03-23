@@ -64,7 +64,7 @@ def generate_report(session, args):
 
     log.info("Writing result to %s", args.output)
     with open(args.output, 'wt') as fp:
-        fp.write(yaml.safe_dump(stats))
+        yaml.safe_dump(stats, fp)
 
 
 if __name__ == '__main__':
