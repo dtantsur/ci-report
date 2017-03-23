@@ -28,9 +28,12 @@ def gertty_session(db_file_name):
     return session
 
 
-def get_ci_stats(session, revision):
+def get_ci_stats(session, revision, threshold):
     stats = {}
     for message in revision.messages:
+        if message.created < threshold:
+            continue
+
         for commentlink in session.app.config.commentlinks:
             test = commentlink.getTestResults(session.app, message.message)
             if not test:
@@ -59,7 +62,8 @@ def generate_report(session, args):
         log.debug("Processing change %s", change.number)
         change_stats = {}
         for revision in change.revisions:
-            change_stats[revision.number] = get_ci_stats(session, revision)
+            change_stats[revision.number] = get_ci_stats(session, revision,
+                                                         threshold)
         stats[change.number] = change_stats
 
     log.info("Writing result to %s", args.output)
