@@ -40,4 +40,6 @@ ChangeLog
 
 # Vagrant
 .vagrant
-ci-report.yaml
+
+# Local
+ci-stats.yaml

@@ -74,7 +74,7 @@ if __name__ == '__main__':
     parser.add_argument('-b', '--branch', help='Git branch',
                         default='master')
     parser.add_argument('-o', '--output', help='Output file',
-                        default='ci-report.yaml')
+                        default='ci-stats.yaml')
     parser.add_argument('-t', '--threshold', help='Days to collect stats',
                         default=30, type=int)
     parser.add_argument('project', help='Project to collect stats for')
