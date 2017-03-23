@@ -56,12 +56,14 @@ def generate_report(session, args):
     changes = [c for c in changes if c.updated >= threshold]
     log.info("Got %d changes for %s", len(changes), args.project)
     for change in changes:
+        log.debug("Processing change %s", change.number)
         change_stats = {}
         for revision in change.revisions:
             change_stats[revision.number] = get_ci_stats(session, revision)
         stats[change.number] = change_stats
 
-    with open('ci-report.yaml', 'wt') as fp:
+    log.info("Writing result to %s", args.output)
+    with open(args.output, 'wt') as fp:
         fp.write(yaml.safe_dump(stats))
 
 
