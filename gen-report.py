@@ -14,9 +14,6 @@ import gertty.sync
 import yaml
 
 
-THRESHOLD = datetime.datetime.now() - datetime.timedelta(days=30)
-
-
 class App(object):
     def __init__(self):
         self.config = gertty.config.Config()
@@ -51,10 +48,12 @@ def get_ci_stats(session, revision):
 def generate_report(session, args):
     log = logging.getLogger('ci-report')
     stats = {}
+    threshold = (datetime.datetime.now() -
+                 datetime.timedelta(days=args.threshold))
 
     changes = session.getChanges("project:%s branch:%s" %
                                  (args.project, args.branch))
-    changes = [c for c in changes if c.updated >= THRESHOLD]
+    changes = [c for c in changes if c.updated >= threshold]
     log.info("Got %d changes for %s", len(changes), args.project)
     for change in changes:
         change_stats = {}
@@ -74,6 +73,8 @@ if __name__ == '__main__':
                         default='master')
     parser.add_argument('-o', '--output', help='Output file',
                         default='ci-report.yaml')
+    parser.add_argument('-t', '--threshold', help='Days to collect stats',
+                        default=30, type=int)
     parser.add_argument('project', help='Project to collect stats for')
     args = parser.parse_args()
 
