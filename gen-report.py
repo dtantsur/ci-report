@@ -59,7 +59,7 @@ if __name__ == '__main__':
                         default='ci-report.yaml')
     parser.add_argument('-x', '--exclude', help='List of patterns to exclude',
                         default='requirements,docs,releasenote,tox,api-ref,'
-                        'install-guide,coverage,tripleo-ci')
+                        'install-guide,coverage,tripleo-ci,python27,pep8')
     parser.add_argument('--max-failure-rate', default=0.75, type=float)
     args = parser.parse_args()
 
