@@ -1,0 +1,13 @@
+project: openstack/ironic
+branch: master
+exclude:
+  - api-ref
+  - coverage
+  - docs
+  - install-guide
+  - pep8
+  - python27
+  - releasenote
+  - requirements
+  - tox
+  - tripleo-ci

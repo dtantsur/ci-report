@@ -18,21 +18,15 @@ directory as described in Usage_.
 Usage
 -----
 
-Collect statistics using the following command::
+Collect statistics and generate a report using the following command::
 
-    ./collect-stats.py openstack/ironic
+    ./gen-report.py conf/ironic.yaml
 
-Replace ``openstack/ironic`` with your Gerrit project name.
+Replace ``conf/ironic.yaml`` with your configuration file, if needed.
 This command collects all CI runs from last 30 days (configurable) and outputs
 their result in file called ``ci-stats.yaml`` (configurable). The ``master``
-branch is used by default (also configurable).
-
-The next command takes this file and generates a report from it::
-
-    ./gen-report.py
-
-See ``./gen-report.py --help`` for usage details.
-The resulting file is called ``ci-report.yaml`` by default.
+branch is used by default (also configurable). Then it creates a report,
+which is saved to ``ci-report.yaml`` by default.
 
 Example
 -------
