@@ -122,7 +122,7 @@ if __name__ == '__main__':
                         default='ci-stats.yaml')
     parser.add_argument('-o', '--output', help='Final output file',
                         default='ci-report.yaml')
-    parser.add_argument('--max-failure-rate', default=0.75, type=float)
+    parser.add_argument('--max-failure-rate', default=0.5, type=float)
     parser.add_argument('config', help='Project configuration')
     args = parser.parse_args()
 
